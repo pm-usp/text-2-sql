@@ -1,5 +1,6 @@
 from dataset_analysis import execute_analysis
 import pandas as pd
+from results_analysis import process_results_analyis
 #import argparse
 
 if __name__ == "__main__":
@@ -15,6 +16,7 @@ if __name__ == "__main__":
     #    metric_label = 'Execution Acc. (%)'
     #else:
     #    metric_label = 'Exact Match Acc. (%)'
-    dataset = pd.read_csv('../dataset/text2sql4pm.tsv', sep='\t')
-    dataset = dataset.dropna(how='all')
-    execute_analysis('sql', dataset)
+    #dataset = pd.read_csv('../dataset/text2sql4pm.tsv', sep='\t')
+    #dataset = dataset.dropna(how='all')
+    #execute_analysis('sql', dataset)
+    process_results_analyis('sql', 'EN')

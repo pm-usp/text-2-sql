@@ -9,7 +9,6 @@ def execute_analysis(perspective: str, dataset):
         print_statistics('Qualifier 9 - Domain value generic Level', stats['qualifier9'], [0, 2, 4])
         print_statistics('Qualifier 3 - Projection Level', stats['qualifier3'], [0, 2, 4])
         print_statistics('Qualifier 4 - Condition Level', stats['qualifier4'], [0, 2, 4])
-        print(stats)
         plot_graphs_pm(stats, '../images/process_mining_qualifiers.png')
 
     elif perspective == 'sql':

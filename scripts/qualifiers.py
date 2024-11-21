@@ -24,6 +24,19 @@ class Qualifier(object):
         bp_percentages = [count / BP_TOTAL * 100 for count in bp_counts]
         return base_counts, base_percentages, paraphrase_counts, paraphrase_percentages, bp_counts, bp_percentages
 
+    def get_results_em(self, column):
+        base_total = self.base.query("hardness_opr_gpt35 != 'no_hardness'")[column].value_counts()
+        paraphrase_total = self.paraphrase.query("hardness_opr_gpt35 != 'no_hardness'")[column].value_counts()
+        base_ok_em = self.base.query("score_opr_gpt35 == 'True' and hardness_opr_gpt35 != 'no_hardness'")[column].value_counts()
+        paraphrase_ok_em = self.paraphrase.query("score_opr_gpt35 == 'True' and hardness_opr_gpt35 != 'no_hardness'")[column].value_counts()
+        return base_total, base_ok_em, paraphrase_total, paraphrase_ok_em
+
+    def get_results_ex(self, column):
+        base_total = self.base[column].value_counts()
+        paraphrase_total = self.paraphrase[column].value_counts()
+        base_ok_ex = self.base.query("score_opr_gpt35_ex == 1")[column].value_counts()
+        paraphrase_ok_ex = self.paraphrase.query("score_opr_gpt35_ex == 1")[column].value_counts()
+        return base_total, base_ok_ex, paraphrase_total, paraphrase_ok_ex
 
 #Event and Case Level (PMp)
 class Qualifier1(Qualifier):

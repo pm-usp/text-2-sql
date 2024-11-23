@@ -375,9 +375,9 @@ def plot_metric_groupped(total_group_pt, total_group, file):
   ax1.set_xticks([])
 
   ax1.axvline(x=37 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
-  ax1.axvline(x=112 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
-  ax1.axvline(x=144 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
-  ax1.axvline(x=161 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax1.axvline(x=111 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax1.axvline(x=142 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax1.axvline(x=156 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
 
   ax1.text(0, 40, "Portuguese", fontsize=14)
 
@@ -418,9 +418,9 @@ def plot_metric_groupped(total_group_pt, total_group, file):
   ax.set_xticks([])
 
   ax.axvline(x=37 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
-  ax.axvline(x=112 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
-  ax.axvline(x=144 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
-  ax.axvline(x=161 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax.axvline(x=111 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax.axvline(x=142 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax.axvline(x=156 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
 
 
   ax.text(0, 40, "English", fontsize=14)

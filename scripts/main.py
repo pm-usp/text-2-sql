@@ -3,23 +3,22 @@ import pandas as pd
 from results_analysis import process_results_analyis
 from results_grouped_by_utterance import process_results_grouped_by_utterance
 
-#import argparse
+import argparse
 
 if __name__ == "__main__":
-    #parser = argparse.ArgumentParser()
-    #parser.add_argument("--sql_complexity", type=str)
-    #parser.add_argument("--metric", type=str)
-    #parser.add_argument("--lang", type=str)
-    #parser.add_argument("--file", type=str)
-#
-    #args = parser.parse_args()
-#
-    #if args.metric == "EX":
-    #    metric_label = 'Execution Acc. (%)'
-    #else:
-    #    metric_label = 'Exact Match Acc. (%)'
-    #dataset = pd.read_csv('../dataset/text2sql4pm.tsv', sep='\t')
-    #dataset = dataset.dropna(how='all')
-    #execute_analysis('sql', dataset)
-    #process_results_analyis('process_mining', 'EX')
-    process_results_grouped_by_utterance()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--execution", type=str)
+    parser.add_argument("--metric", type=str, default='EM')
+    parser.add_argument("--perspective", type=str, default='process_minig')
+       
+    args = parser.parse_args()
+
+    if args.execution == 'dataset_statistics':
+      execute_analysis(args.perspective)
+    elif args.execution == 'result_analysis':
+      process_results_analyis(args.perspective, args.metric)
+    elif args.execution == 'results_grouped_by_utterance':
+      process_results_grouped_by_utterance()
+    else:
+      print('Inform a execution to process')
+    

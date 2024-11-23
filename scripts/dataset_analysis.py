@@ -1,8 +1,10 @@
 from qualifiers import Qualifier1, Qualifier2, Qualifier3, Qualifier4, Qualifier5, Qualifier6, Qualifier7, Qualifier8, Qualifier9
 from graphs import plot_graphs_pm, plot_graphs_nlp, plot_graphs_sql
+from loader_results import load_dataset
 import pandas as pd
 
-def execute_analysis(perspective: str, dataset):
+def execute_analysis(perspective: str):
+    dataset = load_dataset()
     if perspective == 'process_mining':
         stats = get_statistics_pm(dataset)
         print_statistics('Qualifier 1 - Case and Event Level', stats['qualifier1'])

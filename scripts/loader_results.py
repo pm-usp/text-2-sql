@@ -29,10 +29,14 @@ class LoaderResults(object):
             tmp_df = pd.concat([tmp_df, value], axis=1)
         return tmp_df
 
-def load_results(metric):
+def load_dataset():
   dataset = pd.read_csv(DATASET_PATH, sep='\t')
   dataset = dataset.dropna(how='all')
+  return dataset
 
+def load_results(metric):
+  dataset = load_dataset()
+  
   # Load results
   results_en = LoaderResults()
   results_en.load_results({'opr_gpt35': {'lang': 'EN', 'representation': 'openai_shot0', 'metric': metric}})

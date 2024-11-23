@@ -16,7 +16,7 @@ def plot_graphs_pm(stats, file):
     percentages_condition_u = [round(x, 1) for x in percentages_condition_u]
     percentages_condition_p = [round(x, 1) for x in percentages_condition_p]
     
-    fig, (ax, ax1, ax2) = plt.subplots(3, 1,figsize=(18, 6))
+    fig, (ax, ax1, ax2) = plt.subplots(3, 1,figsize=(14, 8))
 
     ## GRAPH 1
     # Define data
@@ -179,7 +179,7 @@ def plot_graphs_nlp(stats, file):
     wh_question_u_percentages = [round(x, 1) for x in wh_question_u_percentages] + [0, 0]
     wh_question_p_percentages = [round(x, 1) for x in wh_question_p_percentages]
 
-    fig, ax = plt.subplots(figsize=(10, 2))
+    fig, ax = plt.subplots(figsize=(10, 1.5))
 
     # Define data
     categories = ['how', 'what', 'none', 'which', 'who', 'when']
@@ -215,7 +215,7 @@ def plot_graphs_nlp(stats, file):
     #ax.set_title('Process mining projection and condition qualifier', fontsize=14)
 
     # Add legend
-    ax.legend(loc="upper center", ncols = 2, bbox_to_anchor=(0.5, 1.5), frameon=False)
+    ax.legend(loc="upper center", ncol = 2, bbox_to_anchor=(0.5, 1.8), frameon=False)
 
     # Set ticks and labels for x-axis
     ax.set_xticks([i + bar_width / 1.5 for i in x_pos])
@@ -245,10 +245,7 @@ def plot_graphs_sql(stats, file):
     percentages_spider_u = [round(x, 1) for x in percentages_spider_u]
     percentages_spider_p = [round(x, 1) for x in percentages_spider_p]
 
-    print (percentages_group_agg_u)
-    print (percentages_group_agg_p)
-
-    fig, (ax1, ax2) = plt.subplots(2, 1,figsize=(10, 6))
+    fig, (ax1, ax2) = plt.subplots(2, 1,figsize=(10, 3.5))
 
     # Define data
     categories_group_agg = ['none', 'aggregation', 'none', 'having']
@@ -285,7 +282,7 @@ def plot_graphs_sql(stats, file):
     #ax.set_title('Process mining projection and condition qualifier', fontsize=14)
 
     # Add legend
-    ax1.legend(loc="upper center", ncols = 2, bbox_to_anchor=(0.5, 1.5), frameon=False)
+    ax1.legend(loc="upper center", ncol = 2, bbox_to_anchor=(0.5, 1.5), frameon=False)
 
     # Set ticks and labels for x-axis
     ax1.set_xticks([i + bar_width_g / 1.5 for i in x_pos_group_agg])

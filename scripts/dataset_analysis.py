@@ -1,27 +1,35 @@
 from qualifiers import Qualifier1, Qualifier2, Qualifier3, Qualifier4, Qualifier5, Qualifier6, Qualifier7, Qualifier8, Qualifier9
 from graphs import plot_graphs_pm, plot_graphs_nlp, plot_graphs_sql
+import pandas as pd
 
 def execute_analysis(perspective: str, dataset):
     if perspective == 'process_mining':
         stats = get_statistics_pm(dataset)
-        print_statistics('Qualifier 1 - Case and Event Level', stats['qualifier1'], [0, 2, 4])
-        print_statistics('Qualifier 2 - Purpose Level', stats['qualifier2'], [0, 2, 4])
-        print_statistics('Qualifier 9 - Domain value generic Level', stats['qualifier9'], [0, 2, 4])
-        print_statistics('Qualifier 3 - Projection Level', stats['qualifier3'], [0, 2, 4])
-        print_statistics('Qualifier 4 - Condition Level', stats['qualifier4'], [0, 2, 4])
+        print_statistics('Qualifier 1 - Case and Event Level', stats['qualifier1'])
+        print('------------------------------------------------------------------------------------------------------\n')
+        print_statistics('Qualifier 2 - Purpose Level', stats['qualifier2'])
+        print('------------------------------------------------------------------------------------------------------\n')
+        print_statistics('Qualifier 9 - Domain value generic Level', stats['qualifier9'])
+        print('------------------------------------------------------------------------------------------------------\n')
+        print_statistics('Qualifier 3 - Projection Level', stats['qualifier3'])
+        print('------------------------------------------------------------------------------------------------------\n')
+        print_statistics('Qualifier 4 - Condition Level', stats['qualifier4'])
+        print('------------------------------------------------------------------------------------------------------\n')
         plot_graphs_pm(stats, '../images/process_mining_qualifiers.png')
 
     elif perspective == 'sql':
         stats = get_statistics_sql(dataset)
-        print_statistics('Qualifier 6 - Projection aggregation', stats['qualifier6'], [0, 2, 4])
-        print_statistics('Qualifier 7 - Condition group', stats['qualifier7'], [0, 2, 4])
-        print_statistics('Qualifier 8 - SQL Complexity', stats['qualifier8'], [0, 2, 4])
+        print_statistics('Qualifier 6 - Projection aggregation', stats['qualifier6'])
+        print('------------------------------------------------------------------------------------------------------\n')
+        print_statistics('Qualifier 7 - Condition group', stats['qualifier7'])
+        print('------------------------------------------------------------------------------------------------------\n')
+        print_statistics('Qualifier 8 - SQL Complexity', stats['qualifier8'])
         plot_graphs_sql(stats, '../images/sql_qualifiers.png')
 
     elif perspective == 'nlp':
         stats = get_statistics_nlp(dataset)
-        print_statistics('Qualifier 5 - Wh Questions', stats['qualifier5'], [0, 2, 4])
-        plot_graphs_nlp(stats, '../images/question_type_qualifier.png', '../images/question_type_qualifier.png')
+        print_statistics('Qualifier 5 - Wh Questions', stats['qualifier5'])
+        plot_graphs_nlp(stats, '../images/question_type_qualifier.png')
     else:
         print("Perspectiva não reconhecida")
 
@@ -60,9 +68,21 @@ def get_statistics_sql(dataset):
     return stats
     
 
-def print_statistics(description, qualifier, indices):
+def print_statistics(description, qualifier):
     print(description)
-    for index in indices:
-        for key, value in qualifier[index].items():
-            print(f'{key}: {value}')
-        print(f'----------------')
+    rows = []
+    keys = qualifier[2].index.tolist()
+    for key in keys:
+        row = {
+            '': key,
+            'Base': qualifier[0].get(key, 0),
+            'Paraphrase': qualifier[2].get(key, 0),
+            'BP': qualifier[4].get(key, 0)
+        }
+        rows.append(row)
+        
+    # Convert rows into a DataFrame for better formatting
+    df = pd.DataFrame(rows)
+
+    # Print the DataFrame
+    print(df.to_string(index=False))

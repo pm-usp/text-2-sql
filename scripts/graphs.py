@@ -383,9 +383,9 @@ def plot_metric_groupped(total_group_pt, total_group, file):
 
   ax1.text(12 + bar_width, 35, "easy", fontsize=10)
   ax1.text(66 + bar_width, 35, "medium", fontsize=10)
-  ax1.text(125 + bar_width, 35, "hard", fontsize=10)
-  ax1.text(148 + bar_width, 35, "extra", fontsize=10)
-  ax1.text(177 + bar_width, 35, "no hardness", fontsize=10)
+  ax1.text(123 + bar_width, 35, "hard", fontsize=10)
+  ax1.text(145 + bar_width, 35, "extra", fontsize=10)
+  ax1.text(174 + bar_width, 35, "no hardness", fontsize=10)
 
   ax1.grid(color='grey', linestyle='--', linewidth=0.1)
 
@@ -427,9 +427,9 @@ def plot_metric_groupped(total_group_pt, total_group, file):
 
   ax.text(12 + bar_width, 35, "easy", fontsize=10)
   ax.text(66 + bar_width, 35, "medium", fontsize=10)
-  ax.text(125 + bar_width, 35, "hard", fontsize=10)
-  ax.text(148 + bar_width, 35, "extra", fontsize=10)
-  ax.text(177 + bar_width, 35, "no hardness", fontsize=10)
+  ax.text(123 + bar_width, 35, "hard", fontsize=10)
+  ax.text(145 + bar_width, 35, "extra", fontsize=10)
+  ax.text(174 + bar_width, 35, "no hardness", fontsize=10)
 
 
   ax.grid(color='grey', linestyle='--', linewidth=0.1)

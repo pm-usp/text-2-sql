@@ -1,23 +1,12 @@
 
 import pandas as pd
 from qualifiers import Qualifier1, Qualifier2, Qualifier3, Qualifier4, Qualifier5, Qualifier6, Qualifier7, Qualifier8, Qualifier9
-from loader_results import LoaderResults
-
-DATASET_PATH = '../dataset/text2sql4pm.tsv'
+from loader_results import load_results
 
 def process_results_analyis(perspective: str, metric):
-    dataset = pd.read_csv(DATASET_PATH, sep='\t')
-    dataset = dataset.dropna(how='all')
-
     # Load results
-    results_en = LoaderResults()
-    results_en.load_results({'opr_gpt35': {'lang': 'EN', 'representation': 'openai_shot0', 'metric': metric}})
-    shot0_en = results_en.concat_all_results()
-    
-    results_pt = LoaderResults()
-    results_pt.load_results({'opr_gpt35': {'lang': 'PT', 'representation': 'openai_shot0', 'metric': metric}})
-    shot0_pt = results_pt.concat_all_results()
-
+    dataset, shot0_en, shot0_pt = load_results(metric)
+   
     if perspective == 'process_mining':
         results = get_results_pm(dataset, shot0_en, shot0_pt, metric)
         print('------------PROCESS_MINING QUALIFIERS-----------------------------------------------------------------\n')

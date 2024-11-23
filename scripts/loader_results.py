@@ -1,5 +1,7 @@
 import pandas as pd
 
+DATASET_PATH = '../dataset/text2sql4pm.tsv'
+
 class LoaderResults(object):
     def __init__(self, *args, **kwargs):
         self.results = {}
@@ -26,3 +28,17 @@ class LoaderResults(object):
         for value in self.results.values():
             tmp_df = pd.concat([tmp_df, value], axis=1)
         return tmp_df
+
+def load_results(metric):
+  dataset = pd.read_csv(DATASET_PATH, sep='\t')
+  dataset = dataset.dropna(how='all')
+
+  # Load results
+  results_en = LoaderResults()
+  results_en.load_results({'opr_gpt35': {'lang': 'EN', 'representation': 'openai_shot0', 'metric': metric}})
+  shot0_en = results_en.concat_all_results()
+    
+  results_pt = LoaderResults()
+  results_pt.load_results({'opr_gpt35': {'lang': 'PT', 'representation': 'openai_shot0', 'metric': metric}})
+  shot0_pt = results_pt.concat_all_results()
+  return dataset, shot0_en, shot0_pt

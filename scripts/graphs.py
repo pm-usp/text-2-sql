@@ -347,3 +347,100 @@ def plot_graphs_sql(stats, file):
 
     # Show plot
     plt.savefig(file, format='png', bbox_inches='tight')
+
+
+# prompt: plot group_id on x axis with all labels on axis for each group_id the relation total by EM, bar plot
+
+def plot_metric_groupped(total_group_pt, total_group, file):
+
+  # Assuming 'total_group_em' is your DataFrame
+  bar_width = 0.75
+
+  # Create the bar plot
+  fig, (ax1, ax) = plt.subplots(2,1, figsize=(16, 8))
+
+  ax1.bar([i + bar_width for i in total_group_pt['Group_id'].index], total_group_pt['total'], bar_width, color='lightgray', label='Total')
+  ax1.bar([i + bar_width for i in total_group_pt['Group_id'].index], total_group_pt['EM'], bar_width, color='lightblue', label='Structure Indicator')
+  ax1.bar([i + bar_width for i in total_group_pt['Group_id'].index], total_group_pt['EX'], bar_width, color='darkred', label='Run Indicator', alpha=0.25)
+
+
+  # Set labels and title
+  #ax.set_xlabel('Utterance grouped by base-paraphrase')
+  ax1.set_ylabel('Total - Structure Indicator - \nRun Indicator')
+  #ax.title('Total vs. EM by Group ID')
+
+  
+  x_pos = [10,20, 30,37, 112, 144, 161]
+
+  ax1.set_xticks([])
+
+  ax1.axvline(x=37 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax1.axvline(x=112 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax1.axvline(x=144 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax1.axvline(x=161 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+
+  ax1.text(0, 40, "Portuguese", fontsize=14)
+
+  ax1.text(12 + bar_width, 35, "easy", fontsize=10)
+  ax1.text(66 + bar_width, 35, "medium", fontsize=10)
+  ax1.text(125 + bar_width, 35, "hard", fontsize=10)
+  ax1.text(148 + bar_width, 35, "extra", fontsize=10)
+  ax1.text(177 + bar_width, 35, "no hardness", fontsize=10)
+
+  ax1.grid(color='grey', linestyle='--', linewidth=0.1)
+
+  # Add a legend
+  #ax1.legend()
+  # Add legend
+  ax1.legend(loc="upper left", ncol = 3, bbox_to_anchor=(0.60, 1.5), frameon=False)
+
+  ax1.spines['top'].set_visible(False)
+  ax1.spines['right'].set_visible(False)
+  ax1.spines['bottom'].set_visible(False)
+  ax1.spines['left'].set_visible(False)
+
+
+  ax.bar([i + bar_width for i in total_group['Group_id'].index], total_group['total'], bar_width, color='lightgray', label='Total')
+  ax.bar([i + bar_width for i in total_group['Group_id'].index], total_group['EM'], bar_width, color='lightblue', label='Structure Indicator')
+  ax.bar([i + bar_width for i in total_group['Group_id'].index], total_group['EX'], bar_width, color='darkred', label='Run Indicator', alpha=0.25)
+
+
+  # Set labels and title
+  ax.set_xlabel('Utterance grouped by base and paraphrase')
+  ax.set_ylabel('Total - Structure Indicator - \nRun Indicator')
+  #ax.title('Total vs. EM by Group ID')
+
+  # Rotate x-axis labels for better readability if needed
+  #ax.set_xticks(total_group_em['Group_id'], rotation=45, fontsize=5)
+
+  x_pos = [10,20, 30,37, 112, 144, 161]
+
+  ax.set_xticks([])
+
+  ax.axvline(x=37 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax.axvline(x=112 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax.axvline(x=144 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+  ax.axvline(x=161 + bar_width * 0.25, color='black', linestyle='--', linewidth=0.5)
+
+
+  ax.text(0, 40, "English", fontsize=14)
+
+  ax.text(12 + bar_width, 35, "easy", fontsize=10)
+  ax.text(66 + bar_width, 35, "medium", fontsize=10)
+  ax.text(125 + bar_width, 35, "hard", fontsize=10)
+  ax.text(148 + bar_width, 35, "extra", fontsize=10)
+  ax.text(177 + bar_width, 35, "no hardness", fontsize=10)
+
+
+  ax.grid(color='grey', linestyle='--', linewidth=0.1)
+
+  ax.spines['top'].set_visible(False)
+  ax.spines['right'].set_visible(False)
+  ax.spines['bottom'].set_visible(False)
+  ax.spines['left'].set_visible(False)
+
+  # Display the plot
+  #plt.tight_layout()  # Adjust layout to prevent labels from overlapping
+  # Show plot
+  plt.subplots_adjust(hspace=0.55)
+  plt.savefig(file, format='png', bbox_inches='tight')

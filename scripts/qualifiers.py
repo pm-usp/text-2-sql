@@ -34,8 +34,8 @@ class Qualifier(object):
     def get_results_ex(self, column):
         base_total = self.base[column].value_counts()
         paraphrase_total = self.paraphrase[column].value_counts()
-        base_ok_ex = self.base.query("score_opr_gpt35_ex == 1")[column].value_counts()
-        paraphrase_ok_ex = self.paraphrase.query("score_opr_gpt35_ex == 1")[column].value_counts()
+        base_ok_ex = self.base.query("score_opr_gpt35 == 1")[column].value_counts()
+        paraphrase_ok_ex = self.paraphrase.query("score_opr_gpt35 == 1")[column].value_counts()
         return base_total, base_ok_ex, paraphrase_total, paraphrase_ok_ex
 
 #Event and Case Level (PMp)

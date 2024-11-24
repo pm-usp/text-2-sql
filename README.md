@@ -3,15 +3,29 @@
 This repository contains resources and instructions necessary for reproduciability. Descriptions of each resorce used are detailed and steps used for experiments are presented.
 
 ## Resource
-- dataset:
-  - text2sql4pm.tsv: the dataset created in tsv format. Each line contains a unique identifier, a group identifier, the English utterance, Portuguese utterance, gold SQL statement with English values, gold SQL statement with Portuguese values and each qualifier presented on paper.
+- data:
+  - dataset:
+    - text2sql4pm.tsv: the dataset created in tsv format. Each line contains a unique identifier, a group identifier, the English utterance, Portuguese utterance, gold SQL statement with English values, gold SQL statement with Portuguese values and each qualifier presented on paper.
+    - english:
+      - dev.json: a json format file commonly used on text-to-SQL implementations. Contains the SQL statement, the SQL statement tokenized, the English utterance, the English utterance tokenized, the qualifiers and utterance identification.
+      - gold.txt: a file containing all gold SQL statements (English values on filters clauses) used for evaluation purposes.
+      - event_log.sqlite: the database used as event log. The table are CASE INSENSITIVE and values are stored in English language.
+    - portuguese:
+      - dev.json: a json format file commonly used on text-to-SQL implementations. Contains the SQL statement, the SQL statement tokenized, the Portuguese utterance, the Portuguese utterance tokenized, the qualifiers and utterance identification.
+      - gold.txt: a file containing all gold SQL statements (Portuguese values on filters clauses) used for evaluation purposes. 
+      - event_log.sqlite: the database used as event log. The table are CASE INSENSITIVE and values are stored in Portuguese language.
+  - prompt:
+    - english:
+      - questions.json: a json file containing the prompts (English) used on GPT-3.5 Turbo to generate SQL statements.
+    - portuguese:
+      - questions.json: a json file containing the prompts (Portuguese) used on GPT-3.5 Turbo to generate SQL statements.
 - scripts: the scripts used to collect dataset statistics and graphs. Also contains scripts used to analyse the results on process mining perspective, nlp perspective and sql perspective.
   - main.py: start point for each type of exection (dataset_statistics, result_analysis and results_grouped_by_utterance).
   - loader_results.py: class and functions to load the dataset and the results file.
   - qualifiers.py: classes with specifities for each qualifier, utilities to segregate the utterances (base and paraphrase), utilities to calculate counts and percentages and utilities to process results for structure indicator (EM) and run indicator (EX).
   - graphs.py: functions used to generate the graphs presented on paper.
   - dataset_analysis.py: functions used to collect the dataset statistics and generate the graphs for each perspective (process_mining, nlp, sql).
-  - results_analysis.py: functions to process the evaluations results obtained from GPT-3.5 Turbo model execution. The results were obtained adapting the scripts provided on [https://github.com/taoyds/test-suite-sql-eval] which the adapted version are provided on [https://github.com/brunoyui/test-suite-sql-eval].
+  - results_analysis.py: functions to process the evaluations results obtained from GPT-3.5 Turbo model execution. The results were obtained adapting the scripts provided on [https://github.com/taoyds/test-suite-sql-eval]. The adapted version are provided on [https://github.com/brunoyui/test-suite-sql-eval].
   - results_grouped_by_utterance.py: functions used to generate the graphs grouped by utterance putting together both metrics, the structure and run indicators.
   - run_statistics.sh: shell script to execute all dataset statistics.
   - run_results.sh: shell script to process all results obtained (Portuguese and English).

@@ -15,11 +15,12 @@ def process_results_grouped_by_utterance():
   
   shot0_en = pd.concat([utterance_group, shot0_en_em, shot0_en_ex[['score_opr_gpt35_ex']]], axis=1)
   shot0_pt = pd.concat([utterance_group, shot0_pt_em, shot0_pt_ex[['score_opr_gpt35_ex']]], axis=1)
+  
+  shot0_en['hardness_opr_gpt35_cat'] = pd.Categorical(shot0_en['hardness_opr_gpt35'], categories=['easy', 'medium', 'hard', 'extra', 'no_hardness'], ordered=True)
+  shot0_pt['hardness_opr_gpt35_cat'] = pd.Categorical(shot0_pt['hardness_opr_gpt35'], categories=['easy', 'medium', 'hard', 'extra', 'no_hardness'], ordered=True)
 
-  shot0_en = shot0_en.sort_values(by=['hardness_opr_gpt35', 'Group_id'],
-                    key=lambda x: pd.Categorical(x, categories=['easy', 'medium', 'hard', 'extra', 'no_hardness']))
-  shot0_pt = shot0_pt.sort_values(by=['hardness_opr_gpt35', 'Group_id'],
-                    key=lambda x: pd.Categorical(x, categories=['easy', 'medium', 'hard', 'extra', 'no_hardness']))
+  shot0_en = shot0_en.sort_values(by=['hardness_opr_gpt35_cat', 'Group_id'])
+  shot0_pt = shot0_pt.sort_values(by=['hardness_opr_gpt35_cat', 'Group_id'])
 
   total_by_group = shot0_en.groupby(["Group_id", "hardness_opr_gpt35"], as_index=False, sort=False)["Utterance_id"].count()
   total_em_by_group = count_true_values(shot0_en, 'score_opr_gpt35 == "True"')

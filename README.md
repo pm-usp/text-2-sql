@@ -26,7 +26,7 @@ This repository contains resources and instructions necessary for reproduciabili
   - qualifiers.py: classes with specifities for each qualifier, utilities to segregate the utterances (base and paraphrase), utilities to calculate counts and percentages and utilities to process results for structure indicator (EM) and run indicator (EX).
   - graphs.py: functions used to generate the graphs presented on paper.
   - dataset_analysis.py: functions used to collect the dataset statistics and generate the graphs for each perspective (process_mining, nlp, sql).
-  - results_analysis.py: functions to process the evaluations results obtained from GPT-3.5 Turbo model execution. The results were obtained adapting the scripts provided on [https://github.com/taoyds/test-suite-sql-eval]. The adapted version are provided on [https://github.com/brunoyui/test-suite-sql-eval].
+  - results_analysis.py: functions to process the evaluations results obtained from GPT-3.5 Turbo model execution. 
   - results_grouped_by_utterance.py: functions used to generate the graphs grouped by utterance putting together both metrics, the structure and run indicators.
   - run_statistics.sh: shell script to execute all dataset statistics.
   - run_results.sh: shell script to process all results obtained (Portuguese and English).
@@ -48,14 +48,23 @@ This repository contains resources and instructions necessary for reproduciabili
 
 ### Model execution and SQL statements generation
 
-To generate the prompts for GPT-3.5 Turbo, we used the generate_question.py script provided in DAIL-SQL was used. For English, we followed the instructions provided in DAIL-SQL, using our dev.json and tables.json files to generate the prompts, which were provided on questions.json file. For Portuguse, we adapted the PromptReprTemplate.py script to include the template for prompt in Portuguese, and adjust the corresponding places to call this template created. We replicate the class NumberSignPrompt and change the following line:
-    
-    ```python
-    template_info = "### Complete somente a consulta sqlite SQL e sem explicação\n" \
+To obtain the prompts and generate SQL statements using GPT-3.5 Turbo, we utilized the scripts provided in DAIL-SQL [https://github.com/BeachWang/DAIL-SQL]. After SQL statements generation we used an adapted version of text-to-sql evaluation test suites [https://github.com/taoyds/test-suite-sql-eval] to evaluate on structure indicator (EM) and run indicator (EX) metrics. The adapted version are provided on [https://github.com/brunoyui/test-suite-sql-eval].
+
+The steps we followed are outlined below:
+ - The generate_question.py script was used to obtain the prompts.
+   - For English, we followed the instructions provided in DAIL-SQL, using our dev.json and tables.json files to obtain the prompts, which were then saved on questions.json file.
+   - For Portuguse, we also used our dev.json and tables.json files to obtain the prompts and adapted the PromptReprTemplate.py script to include the template for prompt in Portuguese. We replicate the class NumberSignPrompt and change the following line:
+      ```python
+      template_info = "### Complete somente a consulta sqlite SQL e sem explicação\n" \
                     "### Tabelas SQLite SQL, com suas propriedades:\n" \
                     "#\n" \
                     "{}\n" \
                     "#"
-    template_question = "### {}"
+      template_question = "### {}"
+      ```
+      - The corresponding places to call this template was adjusted.
+ - From questions.json file, we used the ask_llm.py to call the GPT-3.5 Turbo APIs to generate the SQL statements, which were then saved on RESULTS_MODEL-gpt3.5-turbo.txt files.     
+
+
 
     

@@ -69,6 +69,10 @@ The steps we followed are outlined below:
 
 ### Dataset statistics and analysis of results of model execution
 
+Install the dependencies
+```
+  pip install -r requirements.txt
+```
 For dataset statistics and graphs, go to script folder and execute the shell scripts run_statistics.sh to obtain the statistics on screen and the graphs on images folder which are explained on paper.
 
 For analysis of results of model execution, go to script folder and execute the shell scripts:

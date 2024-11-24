@@ -1,6 +1,6 @@
 # Text-to-SQL Oriented to the Process Mining Domain: A PT-EN Dataset for Query Translation
 
-This repository contains instructions used on experiments and resources necessary for reproduciability. Descriptions of each resorce used are detailed and steps used for experiments are presented.
+This repository contains resources and instructions necessary for reproduciability. Descriptions of each resorce used are detailed and steps used for experiments are presented.
 
 ## Resource
 - dataset:

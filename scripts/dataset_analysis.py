@@ -26,11 +26,13 @@ def execute_analysis(perspective: str):
         print_statistics('Qualifier 7 - Condition group', stats['qualifier7'])
         print('------------------------------------------------------------------------------------------------------\n')
         print_statistics('Qualifier 8 - SQL Complexity', stats['qualifier8'])
+        print('------------------------------------------------------------------------------------------------------\n')
         plot_graphs_sql(stats, '../images/sql_qualifiers.png')
 
     elif perspective == 'nlp':
         stats = get_statistics_nlp(dataset)
         print_statistics('Qualifier 5 - Wh Questions', stats['qualifier5'])
+        print('------------------------------------------------------------------------------------------------------\n')
         plot_graphs_nlp(stats, '../images/question_type_qualifier.png')
     else:
         print("Perspectiva não reconhecida")

@@ -1,6 +1,6 @@
 import pandas as pd
 
-DATASET_PATH = '../dataset/text2sql4pm.tsv'
+DATASET_PATH = '../data/dataset/text2sql4pm.tsv'
 
 class LoaderResults(object):
     def __init__(self, *args, **kwargs):

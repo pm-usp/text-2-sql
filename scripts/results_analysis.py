@@ -15,16 +15,19 @@ def process_results_analyis(perspective: str, metric):
         print_results(results['qualifier2'])
         print('------------------------------------------------------------------------------------------------------\n')
         print_results(results['qualifier9'])
+        print('------------------------------------------------------------------------------------------------------\n')
 
     elif perspective == 'sql':
         results = get_results_sql(dataset, shot0_en, shot0_pt, metric)
-        print('------------SQL QUALIFIERS-----------------------------------------------------------------\n')
+        print('------------SQL QUALIFIERS----------------------------------------------------------------------------\n')
         print_results(results['qualifier8'])
+        print('------------------------------------------------------------------------------------------------------\n')
     
     elif perspective == 'nlp':
         results = get_results_nlp(dataset, shot0_en, shot0_pt, metric)
-        print('------------nlp QUALIFIERS-----------------------------------------------------------------\n')
+        print('------------NLP QUALIFIERS----------------------------------------------------------------------------\n')
         print_results(results['qualifier5'])
+        print('------------------------------------------------------------------------------------------------------\n')
 
     else:
         print("Perspectiva não reconhecida")

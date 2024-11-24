@@ -7,8 +7,8 @@ python main.py \
 
 echo "NLP STATISTICS"
 python main.py \
---execution dataset_statistics \
---perspective nlp
+--execution "dataset_statistics" \
+--perspective "nlp"
 
 echo "SQL STATISTICS"
 python main.py \
